@@ -20,24 +20,19 @@ def do_work(item):
 	br.form['anotherfield']= temp
 	response = br.submit()
 
-
 	html = BeautifulSoup(br.response().read())
 	# print html
 
-
 	try:
-
 		mymatch = html.find("span", {"id": "MainContent_lblMsg"}).text
-
 		print "found: " + mymatch
-
 
 	except:
-		print "found: " + mymatch
+		print "Not found: " + mymatch
 
 if __name__ == '__main__':
 	jobs =[]
-	for x in range(1, 500):
+	for x in range(1, 500): 
 		p = multiprocessing.Process(target=do_work, args=(x,))
 		jobs.append(p)
 		p.start()
